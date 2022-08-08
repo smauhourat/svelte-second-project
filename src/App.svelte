@@ -60,7 +60,7 @@
 <Header />
 <main>
   <form on:submit|preventDefault={addMeetup}>
-    <TextInput id="title" label="TitleXX" value={title} />
+    <TextInput id="title" label="Title" value={title} />
     <TextInput id="subtitle" label="Subtitle" value={subtitle} />
     <TextInput id="address" label="Address" value={address} />
     <TextInput id="imageUrl" label="Image URL" value={imageUrl} />
@@ -69,7 +69,7 @@
       controlType="textarea"
       rows="3"
       id="description"
-      label="Sescription"
+      label="Description"
       value={description}
     />
     <Button type="submit" class="btn btn-primary" caption="Save" />

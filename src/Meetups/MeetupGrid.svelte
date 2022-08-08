@@ -13,6 +13,7 @@
       description={meetup.description}
       contactEmail={meetup.contactEmail}
       address={meetup.address}
+      on:del-meetup={() => alert('Delete')}
     />
   {/each}
 </section>

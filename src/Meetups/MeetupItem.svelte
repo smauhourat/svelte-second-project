@@ -1,4 +1,5 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
   import Button from '../UI/Button.svelte';
 
   export let id = '';
@@ -8,10 +9,22 @@
   export let description = '';
   export let address = '';
   export let contactEmail = '';
+
+  const dispatch = createEventDispatcher();
+
+  const delMeetup = (id) => {
+    alert(id);
+    //dispatch('del-meetup', id);
+  };
+
+  function caca() {
+    alert('caca');
+  }
 </script>
 
 <article>
   <header>
+    <h1>{id}</h1>
     <h1 class="">{title}</h1>
     <h2>{subtitle}</h2>
     <p>{address}</p>
@@ -26,6 +39,7 @@
     <Button href={contactEmail} caption="Contact" />
     <Button type="button" caption="Show Details" />
     <Button type="button" caption="Favorite" mode="outline" />
+    <Button type="button" caption="Delete" on:click={caca} />
   </footer>
 </article>
 
@@ -48,5 +62,9 @@
 
   h2 {
     font-size: 20px;
+  }
+
+  .content {
+    height: 4rem;
   }
 </style>
