@@ -1,43 +1,89 @@
 <script>
-  import Header from "./UI/Header.svelte";
-  import MeetupItem from "./Meetups/MeetupItem.svelte";
+  import Header from './UI/Header.svelte';
+  import MeetupGrid from './Meetups/MeetupGrid.svelte';
+  import TextInput from './UI/TextInput.svelte';
+
+  let title = '';
+  let subtitle = '';
+  let imageUrl = '';
+  let description = '';
+  let address = '';
+  let contactEmail = '';
 
   let meetups = [
     {
-      id: Math.random(),
-      title: "This is a title",
-      subtitle: "This is a subtitle",
-      image: "https://source.unsplash.com/random/300x200",
-      content:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.",
+      id: 'm1',
+      title: 'This is a title',
+      subtitle: 'This is a subtitle',
+      imageUrl: 'https://source.unsplash.com/random/300x200',
+      description:
+        'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.',
+      address: 'Bucarelli 1956, 6B, CABA ARG',
+      contactEmail: 'sasasd@hotmail.com',
     },
     {
-      id: Math.random(),
-      title: "This is a title2",
-      subtitle: "This is a subtitle2",
-      image: "https://source.unsplash.com/random/300x200",
-      content:
-        "2Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.",
+      id: 'm2',
+      title: 'This is a title2',
+      subtitle: 'This is a subtitle2',
+      imageUrl: 'https://source.unsplash.com/random/300x200',
+      description:
+        '2Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.',
+      address: 'Triunvirato 2100, CABA ARG',
     },
     {
-      id: Math.random(),
-      title: "This is a title3",
-      subtitle: "This is a subtitle3",
-      image: "https://source.unsplash.com/random/300x200",
-      content:
-        "3Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.",
+      id: 'm3',
+      title: 'This is a title3',
+      subtitle: 'This is a subtitle3',
+      imageUrl: 'https://source.unsplash.com/random/300x200',
+      description:
+        '3Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, unde.',
     },
   ];
+
+  function addMeetup() {
+    const meetup = {
+      id: 'm' + meetups.length + 1,
+      title: title,
+      subtitle: subtitle,
+      imageUrl: imageUrl,
+      description: description,
+      address: address,
+      contactEmail: contactEmail,
+    };
+
+    meetups = [...meetups, meetup];
+    console.log(JSON.stringify(meetups));
+  }
 </script>
 
 <Header />
+<main>
+  <form on:submit|preventDefault={addMeetup}>
+    <TextInput id="title" label="TitleXX" value={title} />
+    <TextInput id="subtitle" label="Subtitle" value={subtitle} />
+    <TextInput id="address" label="Address" value={address} />
+    <TextInput id="imageUrl" label="Image URL" value={imageUrl} />
+    <TextInput id="contactEmail" label="Email" value={contactEmail} />
+    <TextInput
+      controlType="textarea"
+      rows="3"
+      id="description"
+      label="Sescription"
+      value={description}
+    />
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <MeetupGrid {meetups} />
+</main>
 
-{#each meetups as meetup}
-  <MeetupItem
-    id={meetup.id}
-    title={meetup.title}
-    subtitle={meetup.subtitle}
-    image={meetup.image}
-    content={meetup.content}
-  />
-{/each}
+<style>
+  main {
+    margin-top: 5rem;
+  }
+
+  form {
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+  }
+</style>
